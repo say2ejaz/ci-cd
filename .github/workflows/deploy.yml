@@ -12,6 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: docker build -t ekhan4077/ci-cd
+    - run: docker build . -t ekhan4077/ci-cd
     - run: echo "${{secrets.DOCKERHUB_PASSWORD}}"" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
     - run: docker push ekhan4077/ci-cd:latest
