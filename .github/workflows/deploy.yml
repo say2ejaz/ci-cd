@@ -1,0 +1,19 @@
+name: Deploy Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: "build docker"
+      run: docker build -t ekhan4077/ci-cd
+    - name: "Authenticate" 
+      run: echo "dckr_pat_KkTnhKBMmGgzp_f8S2Rmt56IlKg" | docker login -u ekhan4077 --password-stdin
+    - run: docker push ekhan4077/ci-cd:latest
